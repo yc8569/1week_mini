@@ -12,8 +12,12 @@ export const addPost = (payload) => {
 
 
 // initial state
-const initialState = {
-}
+const initialPost = {
+    image_url: "",
+    username: "",
+    title: "0",
+    insert_dt: moment().format("YYYY-MM-DD hh:mm:ss"),
+};
 
 const posts = (state = initialState, action) => {
   switch (action.type) {
