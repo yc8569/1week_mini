@@ -1,11 +1,21 @@
-import logo from './logo.svg';
-import './App.css';
+import { BrowserRouter, Routes, Route } from 'react-router-dom';
+import MainPage from './pages/MainPage';
+import { useEffect } from 'react';
 
 function App() {
+
+
   return (
-    <div className="App">
-    <div>해보시죠</div>
-    </div>
+    <>
+      <BrowserRouter>
+        <Routes>
+          {/* <Route path='/loginpage' element={<LoginPage />} /> */}
+          <Route path='/' element={<MainPage />} />
+          {/* <Route path='/detailpage' element={<DetailPage />} />
+          <Route path='*' element={<NotFound />} /> */}
+        </Routes>
+      </BrowserRouter>
+    </>
   );
 }
 
