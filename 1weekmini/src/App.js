@@ -1,12 +1,14 @@
-import logo from './logo.svg';
-import './App.css';
+import React from "react";
+import Router from "./shared/Router";
 
 function App() {
   return (
-    <div className="App">
-    <div>해보시죠</div>
-    </div>
+    <>
+      
+      <Router />
+    </>
   );
 }
 
 export default App;
+
