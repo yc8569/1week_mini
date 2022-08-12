@@ -1,11 +1,14 @@
-import LoginPage from './pages/LoginPage';
 import './App.css';
+import { Route } from 'react-router-dom';
+import LoginPage from './pages/LoginPage';
+import RegisterPage from './pages/RegisterPage';
 
 function App() {
   return (
-    <div>
-     <LoginPage />
-    </div>
+    <>
+      <Route component={LoginPage} path="/login" />
+      <Route component={RegisterPage} path="/register" />
+    </>
   );
 }
 
