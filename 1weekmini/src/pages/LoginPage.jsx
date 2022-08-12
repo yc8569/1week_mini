@@ -13,7 +13,10 @@ function LoginPage() {
         type="password"
         placeholder="비밀번호를 입력해주세요"
       />
-      <Button>로그인</Button>
+      <div>
+        <ButtonLogin>로그인</ButtonLogin> 
+        <ButtonSignUp>회원가입</ButtonSignUp>
+      </div>
     </Container>
   );
 }
@@ -38,23 +41,34 @@ const Input = styled.input`
   box-sizing: border-box;
 `;
 
-const Button = styled.div`
+const ButtonLogin = styled.div`
   font-size: 18px;
   font-weight: 700;
   line-height: 49px;
-  display: block;
-  width: 100%;
+  display: inline-block;
+  width: 40%;
   height: 49px;
-  margin: 16px 0 7px;
+  margin: 16px 10px 7px;
   cursor: pointer;
   text-align: center;
   color: #fff;
   border: none;
   border-radius: 0;
   background-color: #03c75a;
-  ${({ disabled }) =>
-    disabled &&
-    `
-    background-color: #efefef;
-  `}
+`;
+
+const ButtonSignUp = styled.div`
+  font-size: 18px;
+  font-weight: 700;
+  line-height: 49px;
+  display: inline-block;
+  width: 40%;
+  height: 49px;
+  margin: 16px 10px 7px;
+  cursor: pointer;
+  text-align: center;
+  color: #fff;
+  border: none;
+  border-radius: 0;
+  background-color: #03c75a;
 `;
