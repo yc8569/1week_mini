@@ -10,8 +10,8 @@ const Header = () => {
             SPARTAGRAM
         </StTitle>
         <button>홈으로</button>
-        <button>회원가입</button>
-      
+        <button>회원가입 : 마이페이지</button>
+        <button>게시물작성</button>
     </StContainer>
   );
 };
