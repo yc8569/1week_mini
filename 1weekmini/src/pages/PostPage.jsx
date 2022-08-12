@@ -10,6 +10,12 @@ const PostPage = () => {
     
   });
 
+//   const onChange = (e) => {
+//     const img = e.target.files[0];
+//     const formData = new FormData();
+//     formData.append('file', img);
+// }
+
   return (
     <StContainer>
       <StForm
@@ -53,7 +59,7 @@ const PostPage = () => {
           </div>
           <input type='file' 
            accept='' 
-               name='profile_img' 
+               name='file' 
       // onChange={onChange} 
       />
  
