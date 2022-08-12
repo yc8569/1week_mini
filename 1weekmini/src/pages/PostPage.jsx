@@ -51,7 +51,12 @@ const PostPage = () => {
           <div mg="10px 0">
             <text size="24">사진</text>
           </div>
-          <input type="image" src="/examples/images/submit_icon.png" alt="제출버튼" />
+          <input type='file' 
+           accept='' 
+               name='profile_img' 
+      // onChange={onChange} 
+      />
+ 
         </StMain>
         <button size="large">추가하기</button>
       </StForm>
