@@ -9,7 +9,26 @@ const MainPage = (props) => {
         <Layout>
           <StContainer>
             <StMain>
-              <p>무엇을 할까요?</p>
+              <div className="PostCard">
+                <div className="Post-Top">
+                    <p>프로필사진</p>
+                    <h3>아이디</h3>
+                </div>
+                <div className="Post-Main">
+                      <div>내가올린 사진</div>
+                      <p>간단한코멘트</p>
+                </div>
+                <div>
+                  <button>좋아요</button><p>좋아요개수</p>
+                  <h3>다른사람아이디 : 댓글</h3>
+                  <h3>다른사람아이디 : 댓글</h3>
+                  <h3>다른사람아이디 : 댓글</h3>
+                  <p>내가올린시간</p>
+                  
+                </div>
+              </div>
+             
+              
              
             </StMain>
           </StContainer>
