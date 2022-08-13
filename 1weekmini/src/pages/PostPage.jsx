@@ -1,22 +1,28 @@
 import React, { useEffect, useState } from "react";
 import styled from "styled-components";
 import Layout from "../components/Layout";
+import { addPost } from "../redux/modules/post";
+import { useDispatch } from "react-redux";
 
 const PostPage = () => {
 
-  const [post, setpost] = useState({
-    
-    username: "",
+  const initialPost ={
+
+     username: "",
     contents: "",
     likeCount: 0,
     // postingImage: enctype="multipart/form-data",
     file: "",
     createdAt: null,
-  });
+  };
+
+
+  const [post, setPost] = useState(initialPost);
+  const dispatch = useDispatch();
 
   const onChangeHandler = (event) => {
     // console.log(event.target)
-    setpost({
+    setPost({
       ...post,
       [event.target.name]: event.target.value,
     })
@@ -30,6 +36,8 @@ const handleSubmit =(event)=>{
   const createdAt = new Date().getTime();
   // if (post.title.trim() === '' || post.contents.trim() === '') 
   // return(alert("빈칸입니다"));
+  dispatch(addPost({...post, createdAt,}));
+  setPost();
 }
 
 
