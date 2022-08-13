@@ -5,33 +5,39 @@ import Layout from "../components/Layout";
 const PostPage = () => {
 
   const [post, setpost] = useState({
-    username: "",
-    title: "",
-    file: "",
     
+    username: "",
+    contents: "",
+    likeCount: 0,
+    // postingImage: enctype="multipart/form-data",
+    file: "",
+    createdAt: null,
   });
 
-//   const onChange = (e) => {
-//     const img = e.target.files[0];
-//     const formData = new FormData();
-//     formData.append('file', img);
-// }
+  const onChangeHandler = (event) => {
+    // console.log(event.target)
+    setpost({
+      ...post,
+      [event.target.name]: event.target.value,
+    })
+    
+}
+
+
+
+const handleSubmit =(event)=>{
+  event.preventDefault();
+  const createdAt = new Date().getTime();
+  // if (post.title.trim() === '' || post.contents.trim() === '') 
+  // return(alert("빈칸입니다"));
+}
+
 
   return (
     <Layout>
       <StContainer>
       <StForm
-        // onSubmit={(event) => {
-        //   event.preventDefault();
-        //   if (
-        //     todo.body.trim() === "" ||
-        //     todo.username.trim() === "" ||
-        //     todo.title.trim() === ""
-        //   ) {
-        //     return alert("모든 항목을 입력해주세요.");
-        //   }
-      
-        // }}
+        onSubmit={handleSubmit }
       >
         <StMain>
           <div mg="10px 0">
@@ -39,7 +45,7 @@ const PostPage = () => {
           </div>
           <input
             type="text"
-            // onChange={onChangeHandler}
+            onChange={onChangeHandler}
             placeholder="작성자의 이름을 입력해주세요. (5자 이내)"
             value={post.username }
             name="username"
@@ -50,19 +56,19 @@ const PostPage = () => {
           </div>
           <input
             type="text"
-            // onChange={onChangeHandler}
+            onChange={onChangeHandler}
             placeholder="제목을 입력해주세요. (50자 이내)"
-            value={post.title}
-            name="title"
+            value={post.contents}
+            name="contents"
             maxLength={50}
           />
           <div mg="10px 0">
             <label size="24">사진</label>
           </div>
           <input type='file' 
-           accept='' 
+           multiple="multiple" 
                name='file' 
-      // onChange={onChange} 
+      onChange={onChangeHandler} 
       />
  
         </StMain>
