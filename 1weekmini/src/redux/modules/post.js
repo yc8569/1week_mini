@@ -16,10 +16,10 @@ const initialPost = {
     image_url: "",
     username: "",
     title: "0",
-    insert_dt: moment().format("YYYY-MM-DD hh:mm:ss"),
+    // insert_dt: moment().format("YYYY-MM-DD hh:mm:ss"),
 };
 
-const posts = (state = initialState, action) => {
+const posts = (state = initialPost, action) => {
   switch (action.type) {
     case ADD_POST:
       return {
