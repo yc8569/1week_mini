@@ -9,5 +9,4 @@ const RegisterPage = () => {
     </AuthTemplate>);
 };
 
-
 export default RegisterPage;

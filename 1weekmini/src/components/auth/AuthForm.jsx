@@ -58,7 +58,7 @@ const textMap = {
     register : '회원가입'
 }
 
-const AuthForm = ({type }) => {
+const AuthForm = ({type}) => {
     const text = textMap[type];
     return (
         <AuthFormBlock>

@@ -49,11 +49,11 @@ const AuthTemplate = ({children}) => {
     <WhiteBox>
       {/* 전부 스타일 컴포넌트로 만들어주지 않고 가독성을 위해 css selector 사용 */}
       <div className="logo-area">
-    <Link to='/'>TITLE</Link>
-    </div>
+        <Link to='/'>TITLE</Link>
+      </div>
     {children}
     </WhiteBox>
-    </AuthTemplateBlock>
+  </AuthTemplateBlock>
     
     )
     ;
