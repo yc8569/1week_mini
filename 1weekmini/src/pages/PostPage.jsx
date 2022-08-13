@@ -33,7 +33,7 @@ const PostPage = () => {
       >
         <StMain>
           <div mg="10px 0">
-            <text size="24">작성자</text>
+            <label size="24">작성자</label>
           </div>
           <input
             type="text"
@@ -44,7 +44,7 @@ const PostPage = () => {
             maxLength={5}
           />
           <div mg="10px 0">
-            <text size="24">소개글</text>
+            <label size="24">소개글</label>
           </div>
           <input
             type="text"
@@ -55,7 +55,7 @@ const PostPage = () => {
             maxLength={50}
           />
           <div mg="10px 0">
-            <text size="24">사진</text>
+            <label size="24">사진</label>
           </div>
           <input type='file' 
            accept='' 
