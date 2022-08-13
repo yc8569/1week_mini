@@ -1,17 +1,21 @@
 import React from "react";
 import styled from "styled-components";
-
+import { useNavigate } from "react-router-dom";
 
 const Header = () => {
-
+ const navigate =useNavigate();
   return (
     <StContainer>
         <StTitle>
             SPARTAGRAM
         </StTitle>
-        <button>홈으로</button>
+        <button onClick={()=>{
+          navigate('/')
+        }}>HOME</button>
         <button>회원가입 : 마이페이지</button>
-        <button>게시물작성</button>
+        <button onClick={()=>{
+          navigate('/postpage')
+        }}>게시물작성</button>
     </StContainer>
   );
 };

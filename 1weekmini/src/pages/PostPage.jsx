@@ -1,12 +1,13 @@
 import React, { useEffect, useState } from "react";
 import styled from "styled-components";
+import Layout from "../components/Layout";
 
 const PostPage = () => {
 
   const [post, setpost] = useState({
     username: "",
     title: "",
-    picture: "",
+    file: "",
     
   });
 
@@ -17,7 +18,8 @@ const PostPage = () => {
 // }
 
   return (
-    <StContainer>
+    <Layout>
+      <StContainer>
       <StForm
         // onSubmit={(event) => {
         //   event.preventDefault();
@@ -67,6 +69,8 @@ const PostPage = () => {
         <button size="large">추가하기</button>
       </StForm>
     </StContainer>
+    </Layout>
+    
   );
 
 
