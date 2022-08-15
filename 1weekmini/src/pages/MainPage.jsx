@@ -1,31 +1,42 @@
 import React from "react";
 import styled from "styled-components";
 import  Layout  from "../components/Layout";
-
+import { useSelector } from "react-redux";
 
 const MainPage = (props) => {
- 
+  const posts = useSelector((state)=> state.posts.postList);
+  console.log(posts)
+
+
+
     return (
         <Layout>
           <StContainer>
             <StMain>
               <div className="PostCard">
-                <div className="Post-Top">
-                    <p>프로필사진</p>
-                    <h3>아이디</h3>
-                </div>
-                <div className="Post-Main">
-                      <div>내가올린 사진</div>
-                      <p>간단한코멘트</p>
-                </div>
-                <div>
-                  <button>좋아요</button><p>좋아요개수</p>
-                  <h3>다른사람아이디 : 댓글</h3>
-                  <h3>다른사람아이디 : 댓글</h3>
-                  <h3>다른사람아이디 : 댓글</h3>
-                  <p>내가올린시간</p>
+                {posts.map((post)=>{
+                  return(
+                    <div>
+                      <div className="Post-Top">
+                        
+                        <h3>{post.username}</h3>
+                      </div>
+                      <div className="Post-Main">
+                        <div>내가올린 사진</div>
+                        <p>{post.contents}</p>
+                      </div>
+                      <div>
+                        <button>좋아요</button><p>좋아요개수</p>
+                        <h3>다른사람아이디 : 댓글</h3>
+                        <h3>다른사람아이디 : 댓글</h3>
+                        <h3>다른사람아이디 : 댓글</h3>
+                        <p>{post.createdAt}</p>
                   
-                </div>
+                       </div>
+                    </div>
+                  )
+                })}
+                
               </div>
              
               
@@ -52,3 +63,7 @@ const StMain = styled.div`
   })
   gap: 24px;
 `;
+
+
+             
+               

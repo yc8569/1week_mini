@@ -1,6 +1,6 @@
 import { legacy_createStore as createStore } from "redux";
 import { combineReducers } from "redux";
-import todos from "../modules/todos.js";
+import posts from '../modules/post';
 
 const rootReducer = combineReducers({
   posts,

@@ -1,72 +1,102 @@
 import React, { useEffect, useState } from "react";
 import styled from "styled-components";
+import Layout from "../components/Layout";
+import { addPost } from "../redux/modules/post";
+import { useDispatch } from "react-redux";
+import { useNavigate } from "react-router-dom";
 
 const PostPage = () => {
+  const navigate = useNavigate();
 
-  const [post, setpost] = useState({
-    username: "",
-    title: "",
-    picture: "",
+  const initialState ={
+
+    username : "",
+    contents: "",
+    likeCount: 0,
+    // postingImage: enctype="multipart/form-data",
+    file: "",
+    createdAt: null,
+  };
+
+
+  const [post, setPost] = useState(initialState);
+  const dispatch = useDispatch();
+
+  const onChangeHandler = (event) => {
+    // const formData = new FormData();
+    // formData.append('image', event.target.files[0]);
+    // console.log(event.target)
+    setPost({
+      ...post,
+      [event.target.name]: event.target.value,
+    })
+    // console.log(formData)
     
-  });
+}
 
-//   const onChange = (e) => {
-//     const img = e.target.files[0];
-//     const formData = new FormData();
-//     formData.append('file', img);
-// }
+
+
+const handleSubmit =(event)=>{
+  event.preventDefault();
+  const createdAt = new Date().getTime();
+  // const formData = new FormData();
+  // formData.append({ [e.target.name]: e.target.value })
+  // formData.append('file', e.target.files[0]);
+  
+  // if (post.title.trim() === '' || post.contents.trim() === '') 
+  // return(alert("빈칸입니다"));
+  dispatch(addPost({...post, createdAt,}));
+  setPost(initialState);
+  navigate('/');
+}
+
 
   return (
-    <StContainer>
+    <Layout>
+      <StContainer>
       <StForm
-        // onSubmit={(event) => {
-        //   event.preventDefault();
-        //   if (
-        //     todo.body.trim() === "" ||
-        //     todo.username.trim() === "" ||
-        //     todo.title.trim() === ""
-        //   ) {
-        //     return alert("모든 항목을 입력해주세요.");
-        //   }
-      
-        // }}
+        onSubmit={handleSubmit }
       >
         <StMain>
           <div mg="10px 0">
-            <text size="24">작성자</text>
+            <label size="24">작성자</label>
           </div>
           <input
             type="text"
-            // onChange={onChangeHandler}
+            onChange={onChangeHandler}
             placeholder="작성자의 이름을 입력해주세요. (5자 이내)"
             value={post.username }
             name="username"
             maxLength={5}
           />
           <div mg="10px 0">
-            <text size="24">소개글</text>
+            <label size="24">소개글</label>
           </div>
           <input
             type="text"
-            // onChange={onChangeHandler}
+            onChange={onChangeHandler}
             placeholder="제목을 입력해주세요. (50자 이내)"
-            value={post.title}
-            name="title"
+            value={post.contents}
+            name="contents"
             maxLength={50}
           />
           <div mg="10px 0">
-            <text size="24">사진</text>
+            <label size="24">사진</label>
           </div>
           <input type='file' 
-           accept='' 
+           multiple="multiple" 
                name='file' 
-      // onChange={onChange} 
+      onChange={onChangeHandler} 
       />
+      
  
         </StMain>
-        <button size="large">추가하기</button>
+        <button size="large" 
+>추가하기</button>
       </StForm>
     </StContainer>
+    </Layout>
+    
   );
 
 
