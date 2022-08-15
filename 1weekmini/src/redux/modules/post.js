@@ -4,6 +4,7 @@ const ADD_POST = "ADD_POST";
 // Action Creator
 
 export const addPost = (payload) => {
+  console.log("됨")
   return {
     type: ADD_POST,
     payload,
@@ -12,20 +13,47 @@ export const addPost = (payload) => {
 
 
 // initial state
-const initialPost = {
-    image_url: "",
-    username: "",
-    title: "0",
-    insert_dt: moment().format("YYYY-MM-DD hh:mm:ss"),
+const initialState ={
+postList:[
+{
+  username: "작성자1",
+  contents: "어려워",
+  likeCount: 33,
+  // postingImage: enctype="multipart/form-data",
+  file: "",
+  createdAt: null,
+},
+{
+  username: "작성자2",
+  contents: "좆같네",
+  likeCount: 4,
+  // postingImage: enctype="multipart/form-data",
+  file: "",
+  createdAt: null,
+},
+],
+post:{
+  username: "",
+  contents: "",
+  likeCount: 0,
+  // postingImage: enctype="multipart/form-data",
+  file: "",
+  createdAt: null,
+},
+ 
 };
 
 const posts = (state = initialState, action) => {
   switch (action.type) {
-    case ADD_POST:
-      return {
+    case "ADD_POST":
+      console.log("호출")
+      return { 
+        
+        ...state,
+        postList:[...state.postList, action.payload],
        
       };
-
+      
    
     default:
       return state;
