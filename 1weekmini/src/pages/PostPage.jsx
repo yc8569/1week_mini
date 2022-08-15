@@ -9,13 +9,12 @@ const PostPage = () => {
   const navigate = useNavigate();
 
   const initialState ={
-
+    createdAt: null,
+    postid:0,
     username : "",
     contents: "",
-    likeCount: 0,
-    // postingImage: enctype="multipart/form-data",
     file: "",
-    createdAt: null,
+    imgurl:[],
   };
 
 
