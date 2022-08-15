@@ -12,7 +12,9 @@ const Header = () => {
         <button onClick={()=>{
           navigate('/')
         }}>HOME</button>
-        <button>회원가입 : 마이페이지</button>
+        <button onClick={() =>{
+          navigate('/loginpage')
+        }}>회원가입 : 마이페이지</button>
         <button onClick={()=>{
           navigate('/postpage')
         }}>게시물작성</button>
