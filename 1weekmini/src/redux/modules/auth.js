@@ -1,4 +1,4 @@
-import { createAction, handlerActions } from 'redux-actions';
+import { createAction, handleActions } from 'redux-actions';
 import produce from 'immer';
 
 const CHANGE_FIELD = 'auth/CHANGE_FIELD';
@@ -26,13 +26,19 @@ const initialState = {
     },
 };
 
-const auth = handlerActions(
+const auth = handleActions(
 
     {
         [CHANGE_FIELD]: (state, {payload: {form, key, value} }) =>
           produce(state, draft => {
             draft[form][key] = value;
           }),
-        [INITIALIZE_FORM]: (state, {payload: form }) =>
-    }
-)
+        [INITIALIZE_FORM]: (state, {payload: form }) =>({
+          ...state,
+          [form]: initialState[form],
+        }),
+    },
+    initialState,
+);
+
+export default auth;

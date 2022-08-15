@@ -58,12 +58,12 @@ const textMap = {
     register : '회원가입'
 }
 
-const AuthForm = ({type}) => {
+const AuthForm = ({type, form, onChange, onSubmit}) => {
     const text = textMap[type];
     return (
         <AuthFormBlock>
             <h3>{text}</h3>
-            <form>
+            <form onSubmit = {onSubmit}>
                 {/* autocomplete 속성 >> 인풋에 자동완성하는 속성 
                  username 은 사용자 이름 , new-password 는 보통 비밀번호 자동완성 막기 위해서 새로운 비밀번호나 비밀번호 확인란에 들어간다는뎅 ㅎ.. 
                  머 일단 책은 이렇고 나는 나중에 보고 current-password 가 더 맞을거 같아서 임의로 바꿨음. */}
@@ -71,19 +71,30 @@ const AuthForm = ({type}) => {
                 autoComplete="username" 
                 name="username" 
                 placeholder="아이디"
-                
+                onChange={onChange}
+                value = {form.username}
                  />
+
                 <StyledInput 
                 autoComplete="current-password" 
                 name="password" 
                 placeholder="비밀번호" 
                 type="password"
+                onChange={onChange}
+                value = {form.password}
                 
                 
                 />
                 {/* type 이 회원가입이면, 비밀번호 확인 인풋 추가 */}
                 {type === 'register' &&(
-                         <StyledInput autoComplete="new-password" name="passwordConfirm" placeholder="비밀번호 확인" type="password" />
+                         <StyledInput 
+                         autoComplete="new-password" 
+                         name="passwordConfirm" 
+                         placeholder="비밀번호 확인" 
+                         type="password" 
+                         onChange={onChange}
+                         value={form.passwordCheck}
+                         />
                     )
                 }
                 <ButtonWithMarinTop fullWidth>{text}</ButtonWithMarinTop>

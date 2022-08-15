@@ -1,3 +1,3 @@
 # 1weekminiproject
 
-화이팅
+yarn add redux-actions react-redux immer styled-components redux-devtools-extension
