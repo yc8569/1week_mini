@@ -16,7 +16,7 @@ const MainPage = (props) => {
               <div className="PostCard">
                 {posts.map((post)=>{
                   return(
-                    <div>
+                    <div key={post.postId}>
                       <div className="Post-Top">
                         
                         <h3>{post.username}</h3>

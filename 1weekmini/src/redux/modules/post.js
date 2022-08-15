@@ -17,7 +17,7 @@ const initialState ={
 postList:[
 {
   createdAt: null,
-  postid:1,
+  postId:1,
   username : "작성자",
   contents: "어려워",
   file: "",
@@ -25,7 +25,7 @@ postList:[
 },
 {
   createdAt: null,
-    postid:2,
+    postId:2,
     username : "작성자2",
     contents: "제발",
     file: "",
@@ -34,7 +34,7 @@ postList:[
 ],
 post:{
   createdAt: null,
-  postid:0,
+  postId:0,
   username : "",
   contents: "",
   file: "",
