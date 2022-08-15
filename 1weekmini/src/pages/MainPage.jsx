@@ -18,7 +18,7 @@ const MainPage = (props) => {
                   return(
                     <div>
                       <div className="Post-Top">
-                        <p>프로필사진</p>
+                        
                         <h3>{post.username}</h3>
                       </div>
                       <div className="Post-Main">
@@ -30,7 +30,7 @@ const MainPage = (props) => {
                         <h3>다른사람아이디 : 댓글</h3>
                         <h3>다른사람아이디 : 댓글</h3>
                         <h3>다른사람아이디 : 댓글</h3>
-                        <p>내가올린시간</p>
+                        <p>{post.createdAt}</p>
                   
                        </div>
                     </div>

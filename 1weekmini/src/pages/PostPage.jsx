@@ -3,12 +3,14 @@ import styled from "styled-components";
 import Layout from "../components/Layout";
 import { addPost } from "../redux/modules/post";
 import { useDispatch } from "react-redux";
+import { useNavigate } from "react-router-dom";
 
 const PostPage = () => {
+  const navigate = useNavigate();
 
-  const initialPost ={
+  const initialState ={
 
-     username: "",
+    username : "",
     contents: "",
     likeCount: 0,
     // postingImage: enctype="multipart/form-data",
@@ -17,15 +19,18 @@ const PostPage = () => {
   };
 
 
-  const [post, setPost] = useState(initialPost);
+  const [post, setPost] = useState(initialState);
   const dispatch = useDispatch();
 
   const onChangeHandler = (event) => {
+    // const formData = new FormData();
+    // formData.append('image', event.target.files[0]);
     // console.log(event.target)
     setPost({
       ...post,
       [event.target.name]: event.target.value,
     })
+    // console.log(formData)
     
 }
 
@@ -34,10 +39,15 @@ const PostPage = () => {
 const handleSubmit =(event)=>{
   event.preventDefault();
   const createdAt = new Date().getTime();
+  // const formData = new FormData();
+  // formData.append({ [e.target.name]: e.target.value })
+  // formData.append('file', e.target.files[0]);
+  
   // if (post.title.trim() === '' || post.contents.trim() === '') 
   // return(alert("빈칸입니다"));
   dispatch(addPost({...post, createdAt,}));
-  setPost();
+  setPost(initialState);
+  navigate('/');
 }
 
 
@@ -78,9 +88,11 @@ const handleSubmit =(event)=>{
                name='file' 
       onChange={onChangeHandler} 
       />
+      
  
         </StMain>
-        <button size="large">추가하기</button>
+        <button size="large" 
+>추가하기</button>
       </StForm>
     </StContainer>
     </Layout>

@@ -13,7 +13,7 @@ export const addPost = (payload) => {
 
 
 // initial state
-const initialPost ={
+const initialState ={
 postList:[
 {
   username: "작성자1",
@@ -43,15 +43,17 @@ post:{
  
 };
 
-const posts = (state = initialPost, action) => {
+const posts = (state = initialState, action) => {
   switch (action.type) {
-    case ADD_POST:
+    case "ADD_POST":
+      console.log("호출")
       return { 
+        
         ...state,
         postList:[...state.postList, action.payload],
        
       };
-
+      
    
     default:
       return state;
