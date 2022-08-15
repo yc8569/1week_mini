@@ -9,13 +9,15 @@ import { useState } from 'react';
 
 
 const Detail = () => {
+
+
   const { id } = useParams();
-  // const navigate = useNavigate();
+//   const navigate = useNavigate();
   const dispatch = useDispatch();
-//   const posts = useSelector((state) => state.posts.todoList);
+  const posts = useSelector((state) => state.posts.postList);
 
-//   const new_post = todos.filter((todo)=> todo.id == id)[0]
-
+  const new_post = posts.filter((post)=> post.postId == id)[0]
+console.log(new_post)
 
  
 
@@ -49,9 +51,12 @@ const Detail = () => {
     <>
       <Layout>
        
-       디테일페이지야
-         
-          
+      <DetailBox>
+          <DetailNo>No. {new_post.postId} 🎂</DetailNo>
+          <DetailTitle>{new_post.username}</DetailTitle>
+          <DetailContent>{new_post.contents}</DetailContent>
+          <DetailContent>{new_post.createdAt}</DetailContent>
+        </DetailBox>
       </Layout>
     </>
   );

@@ -2,8 +2,11 @@ import React from "react";
 import styled from "styled-components";
 import  Layout  from "../components/Layout";
 import { useSelector } from "react-redux";
+import { useNavigate } from "react-router-dom";
+
 
 const MainPage = (props) => {
+  const navigate = useNavigate();
   const posts = useSelector((state)=> state.posts.postList);
   console.log(posts)
 
@@ -18,7 +21,11 @@ const MainPage = (props) => {
                   return(
                     <Box key={post.postId}>
                       <div className="Post-Top" >
-                        <button>{post.postId}</button>
+                        <button
+                        onClick={()=>{
+                          navigate(`/detailpage/${post.postId}`)
+                        }}
+                        >{post.postId}</button>
                         <h3>{post.username}</h3>
                       </div>
                       <div className="Post-Main">
