@@ -8,17 +8,37 @@ import { useState } from 'react';
 
 
 
-const Detail = () => {
+const MyPage = (props) => {
 
 
-  const { id } = useParams();
+    // const initialState ={
+    //     postList:[
+    //     {
+    //       createdAt: null,
+    //       postId:1,
+    //       username : "작성자",
+    //       contents: "어려워",
+    //       file: "",
+    //       imgurl:[],
+    //     },
+    //     {
+    //       createdAt: null,
+    //         postId:1,    //post 의 주인 아이다
+    //         username : "작성자2",       //게시글
+    //         contents: "제발",
+    //         file: "",
+    //         imgurl:[],
+    //     },]}
+
+
+  const { username } = useParams();
 //   const navigate = useNavigate();
   const dispatch = useDispatch();
   const posts = useSelector((state) => state.posts.postList);
+  
+  const new_post = posts.filter((post)=> post.username == username);
 
-  const new_post = posts.filter((post)=> post.postId == id)[0]
-console.log(new_post)
-
+  console.log(new_post)
  
 
   const handleChangeState = (event) => {
@@ -51,18 +71,24 @@ console.log(new_post)
     <>
       <Layout>
        
-      <DetailBox>
-          <DetailNo>No. {new_post.postId} 🎂</DetailNo>
-          <DetailTitle>{new_post.username}</DetailTitle>
-          <DetailContent>{new_post.contents}</DetailContent>
-          <DetailContent>{new_post.createdAt}</DetailContent>
-        </DetailBox>
+     
+      {new_post.map((post)=>
+               <MyPageBox>
+               <MyPageNo>No. {post.postId} 🎂</MyPageNo>
+               <MyPageTitle>{post.username}</MyPageTitle>
+               <MyPageContent>{post.contents}</MyPageContent>
+               <MyPageContent>{post.createdAt}</MyPageContent>
+               </MyPageBox>
+      )}
+
+      
+          
       </Layout>
     </>
   );
 };
 
-const DetailBox = styled.div`
+const MyPageBox = styled.div`
   width: 500px;
   height: 300px;
   background-color: rgb(226, 228, 240);
@@ -71,18 +97,19 @@ const DetailBox = styled.div`
   padding: 50px;
 `;
 
-const DetailNo = styled.div`
+const MyPageNo = styled.div`
   margin-bottom: 10px;
 `
 
-const DetailTitle = styled.div`
+const MyPageTitle = styled.div`
   font-weight: 500;
   font-size: 24px;
   margin-bottom: 10px;
 `;
 
-const DetailContent = styled.div`
+const MyPageContent = styled.div`
   font-size: 18px;
 `
 
-export default Detail;
+export default MyPage;
+

@@ -6,6 +6,7 @@ import { useNavigate } from "react-router-dom";
 
 
 const MainPage = (props) => {
+  // const username = 작성자";
   const navigate = useNavigate();
   const posts = useSelector((state)=> state.posts.postList);
   console.log(posts)
@@ -19,25 +20,26 @@ const MainPage = (props) => {
               <div className="PostCard">
                 {posts.map((post)=>{
                   return(
-                    <Box key={post.postId}>
+                    <Box >
                       <div className="Post-Top" >
-                        <button
+                        <p>{post.postId}</p>
+                        <h3
                         onClick={()=>{
-                          navigate(`/detailpage/${post.postId}`)
+                          navigate(`/mypage/${post.username}`)
                         }}
-                        >{post.postId}</button>
-                        <h3>{post.username}</h3>
+                        >{post.username}</h3>
                       </div>
                       <div className="Post-Main">
                         <div>내가올린 사진</div>
                         <p>{post.contents}</p>
                       </div>
                       <div>
+                      <p>{new Date(post.createdAt).toLocaleString()}</p>
                         <button>좋아요</button><p>좋아요개수</p>
                         <h3>다른사람아이디 : 댓글</h3>
                         <h3>다른사람아이디 : 댓글</h3>
                         <h3>다른사람아이디 : 댓글</h3>
-                        <p>{post.createdAt}</p>
+                        
                   
                        </div>
                     </Box>

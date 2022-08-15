@@ -30,7 +30,7 @@ const PostPage = () => {
       [event.target.name]: event.target.value,
     })
     // console.log(formData)
-    console.log(event.target.files)
+    // console.log(event.target.files)
 }
 
 
@@ -38,6 +38,7 @@ const PostPage = () => {
 const handleSubmit =(event)=>{
   event.preventDefault();
   const createdAt = new Date().getTime();
+  console.log(createdAt);
  
 
   

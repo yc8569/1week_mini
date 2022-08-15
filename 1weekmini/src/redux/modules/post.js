@@ -25,11 +25,19 @@ postList:[
 },
 {
   createdAt: null,
-    postId:2,
+    postId:1,
     username : "작성자2",
     contents: "제발",
     file: "",
     imgurl:[],
+},
+{
+  createdAt: null,
+  postId:2,
+  username : "작성자",
+  contents: "두번째게시물",
+  file: "",
+  imgurl:[],
 },
 ],
 post:{
