@@ -1,11 +1,11 @@
 import { legacy_createStore as createStore } from "redux";
 import { combineReducers } from "redux";
 import posts from '../modules/post';
-import auth from '../modules/auth';
+import user from '../modules/userReducer';
 
 const rootReducer = combineReducers({
   posts,
-  auth,
+  user,
 });
 const store = createStore(rootReducer);
 
