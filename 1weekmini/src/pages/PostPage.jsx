@@ -11,7 +11,7 @@ const PostPage = () => {
 
   const initialState ={
     createdAt: null,
-    postid:0,
+    postId:0,
     username : "",
     contents: "",
     file: "",

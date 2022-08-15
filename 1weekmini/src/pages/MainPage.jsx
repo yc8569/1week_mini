@@ -16,9 +16,9 @@ const MainPage = (props) => {
               <div className="PostCard">
                 {posts.map((post)=>{
                   return(
-                    <div key={post.postId}>
-                      <div className="Post-Top">
-                        
+                    <Box key={post.postId}>
+                      <div className="Post-Top" >
+                        <button>{post.postId}</button>
                         <h3>{post.username}</h3>
                       </div>
                       <div className="Post-Main">
@@ -33,7 +33,7 @@ const MainPage = (props) => {
                         <p>{post.createdAt}</p>
                   
                        </div>
-                    </div>
+                    </Box>
                   )
                 })}
                 
@@ -64,6 +64,10 @@ const StMain = styled.div`
   gap: 24px;
 `;
 
+const Box = styled.div`
+  border: 1px solid rebeccapurple;
+  border-radius: 10px;
+`;
 
              
                
