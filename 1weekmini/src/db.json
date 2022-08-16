@@ -1,0 +1,8 @@
+{
+    "/api/user": [
+      {
+        "username": "abc",
+        "password": "123"
+      }
+    ]
+  }

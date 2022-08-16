@@ -81,7 +81,7 @@ const MainPage = (props) => {
                               placeholder={"내용"}
                             ></input>
                           </div> */}
-                         <Comment/>
+                         
                         </Modal>
                         </div>
                        

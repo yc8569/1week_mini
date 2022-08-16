@@ -1,6 +1,6 @@
 import axios from "axios";
 
-const DOMAIN = "http://localhost:3000";
+const DOMAIN = "http://3.35.131.44/";
 // const headers = {"Content-type": "application/json"}
 axios.defaults.withCredentials = true; // 쿠키 데이터를 전송받기 위해
 // export const request = (method, url, data) => {
@@ -16,9 +16,9 @@ axios.defaults.withCredentials = true; // 쿠키 데이터를 전송받기 위�
 // };
 
 export const request = (method, url, data) => {
-  console.log(data)
+  console.log(method, url, data)
   return axios
-    .method(DOMAIN + url, {
+    .methods(DOMAIN + url, {
       data
     })
     .then((response) => {
