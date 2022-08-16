@@ -1,0 +1,28 @@
+{
+  "mainpage": [
+    {
+      "createdAt": null,
+      "postId":1,
+      "username" : "작성자",
+      "contents": "어려워",
+      "file": "",
+      "imgurl":[]
+    },
+    {
+      "createdAt": null,
+      "postId":1,
+      "username" : "작성자2",
+      "contents": "하기싫어",
+      "file": "",
+      "imgurl":[]
+    },
+    {
+      "createdAt": null,
+      "postId":1,
+      "username" : "작성자",
+      "contents": "안해",
+      "file": "",
+      "imgurl":[]
+    }
+  ]
+}
