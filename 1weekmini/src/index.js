@@ -9,15 +9,20 @@ import store  from './redux/config/configStore';
 // import reduxThunk from "redux-thunk";
 // import reducer from "./_reducers";
 import reportWebVitals from "./reportWebVitals"
+import { AuthContextProvider } from "./contextStore/auth-context";
 
 
 const root = ReactDOM.createRoot(document.getElementById('root'));
 root.render(
+  <AuthContextProvider>
   <Provider store={store}>
     <React.StrictMode>
       <App />
     </React.StrictMode>
   </Provider>
+
+  </AuthContextProvider>
+
 
 );
 

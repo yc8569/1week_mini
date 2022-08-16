@@ -4,6 +4,7 @@ import Layout from "../components/Layout";
 import { addPost } from "../redux/modules/post";
 import { useDispatch } from "react-redux";
 import { useNavigate } from "react-router-dom";
+import axios from "axios";
 
 let number = 3
 const PostPage = () => {
@@ -32,8 +33,7 @@ const PostPage = () => {
       ...post,
       [event.target.name]: event.target.value,
     })
-    // console.log(formData)
-    // console.log(event.target.files)
+    
 }
 
 
@@ -48,6 +48,18 @@ const handleSubmit =(event)=>{
   // if (post.title.trim() === '' || post.contents.trim() === '') 
   // return(alert("빈칸입니다"));
   dispatch(addPost({...post, postId: number, createdAt,}));
+
+// console.log(post);
+// axios
+// .post("http://localhost:5000",{post})
+// .then((res) => {
+//   console.log(res.data);
+//   navigate("/");
+//   return res.data;
+// })
+// .catch((error) => alert(error.message));
+
+
   setPost(initialState);
   
   navigate('/');

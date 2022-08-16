@@ -2,12 +2,32 @@ import React from "react";
 import styled from "styled-components";
 import  Layout  from "../components/Layout";
 import { useSelector } from "react-redux";
-import { useNavigate } from "react-router-dom";
+import { useNavigate, useE } from "react-router-dom";
 import Modal from "../components/Modal";
 import { useState } from "react";
-
+import axios from "axios";
+import { useEffect } from "react";
 
 const MainPage = (props) => {
+
+  // const axiosPost = async()=>{
+  //   const res = await axios.get("http://localhost:3000/mainpage");
+  //   console.log(res)
+    // .then((res) =>{
+
+    //   console.log(res);
+    // // window.alert(res.data.answer);
+    // return res.data;
+    // })
+    // .catch((error) => alert(error.message));
+    
+  // };
+
+axios.get("http://3.35.131.44/api/posts").then(res => {
+  //  const posts = res.data  
+console.log(res.data)
+
+});
 
 
   const [uploadComment, setUploadComment] = useState(false);
@@ -35,6 +55,10 @@ const MainPage = (props) => {
   //   setToggle((prev) => !prev);
   // };
 
+  //  useEffect(() =>{
+  //     axiosPost();
+
+  //   }, [])
 
 
     return (
@@ -55,11 +79,12 @@ const MainPage = (props) => {
                       </div>
                       <div className="Post-Main">
                         <div>내가올린 사진</div>
+                        
                         <p>{post.contents}</p>
                       </div>
                       <div>
                       <p>{new Date(post.createdAt).toLocaleString()}</p>
-                        <button>좋아요</button><p>좋아요개수</p>
+                        {/* <button onClick={axiosPost}>좋아요</button><p>좋아요개수</p> */}
                         <h3>다른사람아이디 : 댓글</h3>
                         <h3>다른사람아이디 : 댓글</h3>
                         <div>
