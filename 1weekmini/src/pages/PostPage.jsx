@@ -5,33 +5,35 @@ import { addPost } from "../redux/modules/post";
 import { useDispatch } from "react-redux";
 import { useNavigate } from "react-router-dom";
 
+let number = 3
 const PostPage = () => {
   const navigate = useNavigate();
 
   const initialState ={
-
+    createdAt: null,
+    postId:0,
     username : "",
     contents: "",
-    likeCount: 0,
-    // postingImage: enctype="multipart/form-data",
     file: "",
-    createdAt: null,
+    imgurl:[],
   };
 
 
   const [post, setPost] = useState(initialState);
   const dispatch = useDispatch();
 
-  const onChangeHandler = (event) => {
-    // const formData = new FormData();
-    // formData.append('image', event.target.files[0]);
-    // console.log(event.target)
+  const onChangeHandler = (event) => {     //어떤이름으로 올릴꺼니
+    
+    // const uploded_file = uploadBytes(ref(storage,`image/${event.target.file[0].name}`),
+    // event.target.file[0]  //어떤거를 올릴꺼니
+    // );
+
     setPost({
       ...post,
       [event.target.name]: event.target.value,
     })
     // console.log(formData)
-    
+    // console.log(event.target.files)
 }
 
 
@@ -39,15 +41,17 @@ const PostPage = () => {
 const handleSubmit =(event)=>{
   event.preventDefault();
   const createdAt = new Date().getTime();
-  // const formData = new FormData();
-  // formData.append({ [e.target.name]: e.target.value })
-  // formData.append('file', e.target.files[0]);
+  console.log(createdAt);
+ 
+
   
   // if (post.title.trim() === '' || post.contents.trim() === '') 
   // return(alert("빈칸입니다"));
-  dispatch(addPost({...post, createdAt,}));
+  dispatch(addPost({...post, postId: number, createdAt,}));
   setPost(initialState);
+  
   navigate('/');
+  number = number+1;
 }
 
 
@@ -84,8 +88,9 @@ const handleSubmit =(event)=>{
             <label size="24">사진</label>
           </div>
           <input type='file' 
-           multiple="multiple" 
-               name='file' 
+                 multiple="multiple" 
+                 name='imgurl' 
+                 accept="image/jpg, image/png, image/jpeg"
       onChange={onChangeHandler} 
       />
       
