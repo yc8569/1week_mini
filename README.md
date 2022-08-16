@@ -8,4 +8,5 @@ yarn add {
     redux-devtools-extension
     redux-promise
     redux-thunk
+    json-server
     }

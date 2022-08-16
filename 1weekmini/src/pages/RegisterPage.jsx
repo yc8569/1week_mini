@@ -7,6 +7,7 @@ function RegisterPage(props) {
   const [Password, setPassword] = useState("");
   const [Username, setUsername] = useState("");
   const [ConfirmPasword, setConfirmPasword] = useState("");
+  
   const dispatch = useDispatch();
 
 
