@@ -22,8 +22,11 @@ const PostPage = () => {
   const [post, setPost] = useState(initialState);
   const dispatch = useDispatch();
 
-  const onChangeHandler = (event) => {
- 
+  const onChangeHandler = (event) => {     //어떤이름으로 올릴꺼니
+    
+    // const uploded_file = uploadBytes(ref(storage,`image/${event.target.file[0].name}`),
+    // event.target.file[0]  //어떤거를 올릴꺼니
+    // );
 
     setPost({
       ...post,
