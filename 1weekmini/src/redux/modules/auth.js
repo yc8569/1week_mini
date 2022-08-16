@@ -1,38 +1,38 @@
-import { createAction, handlerActions } from 'redux-actions';
-import produce from 'immer';
+import React, { useEffect } from "react";
+import Axios from "axios";
+import { useDispatch } from "react-redux";
+import { auth } from "./userAction";
 
-const CHANGE_FIELD = 'auth/CHANGE_FIELD';
-const INITIALIZE_FORM = 'auth/INITIALIZE_FORM';
+export default function (SpecificComponent, option, adminRoute = null) {
+  //option
+  // null => 아무나 출입이 가능한 페이지
+  // true => 로그인한유저만 출입이 가능한 페이지
+  // false => 로그인한 유저는 출입 불가능한 페이지
+  function AuthenticationCheck(props) {
+    const dispatch = useDispatch();
+    useEffect(() => {
+      dispatch(auth()).then((res) => {
+        console.log(res);
+        //로그인 하지 않은 상태
+        if (!res.payload.isAuth) {
+          if (option) {
+            props.history.push("/login");
+          }
+        } else {
+          //로그인 한 상태
+          if (adminRoute && !res.payload.isAdmin) {
+            props.history.push("/");
+          } else {
+            if (option === false) {
+              props.history.push("/");
+            }
+          }
+        }
+      });
+    }, []);
 
-export const changeField = createAction(
-    CHANGE_FIELD,
-    ({form, key, value}) => ({
-        form,
-        key,
-        value,
-    })
-);
+    return <SpecificComponent />;
+  }
 
-export const initializeForm = createAction(INITIALIZE_FORM, form => form);
-const initialState = {
-    register: {
-        username: '',
-        password: '',
-        passwordCheck: '',
-    },
-    login: {
-        username: '',
-        password: '',
-    },
-};
-
-const auth = handlerActions(
-
-    {
-        [CHANGE_FIELD]: (state, {payload: {form, key, value} }) =>
-          produce(state, draft => {
-            draft[form][key] = value;
-          }),
-        [INITIALIZE_FORM]: (state, {payload: form }) =>
-    }
-)
+  return AuthenticationCheck;
+}

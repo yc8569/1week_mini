@@ -2,9 +2,13 @@ import React from 'react';
 import ReactDOM from 'react-dom/client';
 import './index.css';
 import App from './App';
-import reportWebVitals from './reportWebVitals';
-import store  from './redux/config/configStore';
 import { Provider } from "react-redux";
+import store  from './redux/config/configStore';
+// import { applyMiddleware, createStore } from "redux";
+// import promiseMiddlerware from "redux-promise";
+// import reduxThunk from "redux-thunk";
+// import reducer from "./_reducers";
+import reportWebVitals from "./reportWebVitals"
 
 
 const root = ReactDOM.createRoot(document.getElementById('root'));
