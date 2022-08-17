@@ -3,12 +3,36 @@ import styled from "styled-components";
 import Layout from "../components/Layout";
 import { addPost } from "../redux/modules/post";
 import { useDispatch } from "react-redux";
-import { useNavigate } from "react-router-dom";
-import axios from "axios";
+import { useNavigate, useParams } from "react-router-dom";
+import { useRef } from 'react';
+import { getCookie, setCookie } from '../shared/Cookie';
 
 let number = 3
 const PostPage = () => {
   const navigate = useNavigate();
+  const [userData, setUserData] = useState();
+  let formData = new FormData();
+  // cookie get
+  const username = getCookie('username');
+  const myUserId = getCookie('userId');
+
+
+  const imageRef = useRef();
+  const usernameRef = useRef();
+  const contentsRef = useRef();
+  const filesRef = useRef();
+  
+    //파일 미리볼 url을 저장해줄 state - copy & paste
+    const [fileImage, setFileImage] = useState("");
+
+      //보내줄 파일을 저장해줄 state
+  const [fileImgUp, setImage] = useState();
+
+  // 파일 저장 - 로컬에서만 볼 수 있다
+  const saveFileImage = (e) => {
+    setFileImage(URL.createObjectURL(e.target.files[0]));
+    setImage(e.target.files[0])
+  };
 
   const initialState ={
     createdAt: null,
@@ -99,6 +123,12 @@ const handleSubmit =(event)=>{
           <div mg="10px 0">
             <label size="24">사진</label>
           </div>
+          <image    
+                //  alt="이미지 미리보기💾"
+                 accept="image/*"
+                 src={fileImage}
+                 rounded={true}
+               />
           <input type='file' 
                  multiple="multiple" 
                  name='imgurl' 
