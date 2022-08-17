@@ -1,9 +1,14 @@
 import React, { useState } from "react";
 import { useDispatch } from "react-redux";
 import { loginUser } from "../redux/modules/userAction";
+import Cookies from "universal-cookie";
+import apis from "../api/index";
+import { setCookie } from "../shared/Cookie";
+import { useNavigate } from "react-router-dom";
 
 function LoginPage(props) {
   const dispatch = useDispatch();
+  const navigate = useNavigate();
 
   const [Username, setUsername] = useState("");
   const [Password, setPassword] = useState("");
@@ -15,25 +20,34 @@ function LoginPage(props) {
     setPassword(e.currentTarget.value);
   };
 
-  const onSubmitHandler = (e) => {
-    e.preventDefault();
+  const onSubmitHandler = async(e) => {
+    
 
     let body = {
       username: Username,
       password: Password,
     };
 
-    dispatch(loginUser(body))
-      .then((res) => {
-        if (res.payload.loginSuccess) {
-          props.history.push("/");
-        } else {
-          alert(res.payload.message);
-        }
-      })
-      .catch((err) => {
-        console.log(err);
+    e.preventDefault(); //1. !!아마 왼쪽꺼 필요없는 걸로 암.
+    
+    try {
+      const response = await apis.postLogin({
+        username: Username,
+        password: Password,
       });
+      console.log(response);
+      const AccessToken = response.data.accessToken.split(" ")[0];
+      // 아래 setCookie를 통해 Cookie 안에 서버로부터 받은 토큰을 저장한다.
+      // console.log(AccessToken);
+     
+      setCookie("token", AccessToken);
+     
+      // 위의 setCookie("token", AccessToken) 안의 매겨변수는 "토큰 이름", 토큰값 이다.
+      alert("로그인 성공");
+      navigate("/");
+    } catch (error) {
+      alert("로그인 다시시도");
+    }
   };
 
   return (

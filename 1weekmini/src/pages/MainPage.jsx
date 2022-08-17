@@ -7,8 +7,10 @@ import Modal from "../components/Modal";
 import { useState } from "react";
 import axios from "axios";
 import { useEffect } from "react";
+import { getCookie } from "../shared/Cookie";
 
 const MainPage = (props) => {
+  getCookie("token");
 
   // const axiosPost = async()=>{
   //   const res = await axios.get("http://localhost:3000/mainpage");
