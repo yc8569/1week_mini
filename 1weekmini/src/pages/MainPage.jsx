@@ -111,24 +111,20 @@ const MainPage = (props) => {
                         <h3>다른사람아이디 : 댓글</h3>
                         <div>
                         <Modal visible={uploadComment} closeModal={closeCommentModal}>
-                          {/* <h2 style={{ textAlign: "center" }}>일정을 적어주세요!</h2>
-                          <div>
-                            <h4>제목</h4>
-                            <input
-                              // ref={titleRef}
-                              name="title"
-                              type={"text"}
-                              placeholder={"제목"}
-                            ></input>
-                            <h5>내용</h5>
+                          <h2 style={{ textAlign: "center" }}>ID?</h2>
+                          <Contents>
+                            <h4>사진</h4>
+                          </Contents>
+                          <CommentStyle>
+                            <text>아이디</text>
                             <input
                               // ref={contentsRef}
                               name="contents"
                               type={"text"}
                               placeholder={"내용"}
                             ></input>
-                          </div> */}
-                         
+                            <button type='submit'>댓글달기</button>
+                          </CommentStyle>
                         </Modal>
                         
                         </div>
@@ -191,5 +187,10 @@ const Backdrop = styled.div`
   margin-top: 10px;
 `;
 
-             
-               
+const Contents = styled.div`
+  height: 17vh;
+`
+
+const CommentStyle = styled.div`
+  position: bottom;
+`
