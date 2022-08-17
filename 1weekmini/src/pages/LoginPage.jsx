@@ -39,16 +39,17 @@ function LoginPage(props) {
     e.preventDefault(); //1. !!아마 왼쪽꺼 필요없는 걸로 암.
     
     try {
-      const response = await apis.postLogin({
+      const response = await apis.loginUser({
         username: Username,
         password: Password,
       });
       console.log(response);
       const AccessToken = response.data.accessToken.split(" ")[0];
+      const TokenExpiresIn = response.data.accessTokenExpiresIn;
       // 아래 setCookie를 통해 Cookie 안에 서버로부터 받은 토큰을 저장한다.
-      // console.log(AccessToken);
-      
+
       setCookie("token", AccessToken);
+      localStorage.setItem("accessToken", AccessToken);
      
       // 위의 setCookie("token", AccessToken) 안의 매겨변수는 "토큰 이름", 토큰값 이다.
       alert("로그인 성공");

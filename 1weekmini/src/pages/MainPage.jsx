@@ -2,34 +2,54 @@ import React from "react";
 import styled from "styled-components";
 import  Layout  from "../components/Layout";
 import { useSelector } from "react-redux";
-import { useNavigate, useE } from "react-router-dom";
+import { useNavigate,} from "react-router-dom";
 import Modal from "../components/Modal";
 import { useState } from "react";
 import axios from "axios";
 import { useEffect } from "react";
-import { getCookie } from "../shared/Cookie";
+import CommentCom from "../comment/CommentCom";
+import AuthContext from "../contextStore/auth-context";
+import { withRouter } from 'react-router-dom';
+// import { useEffect } from "react";
+// import { getCookie } from "../shared/Cookie";
 
 const MainPage = (props) => {
-  getCookie("token");
+  const [fetchData, setFetchData] = useState([]);
+  const [posts, setPosts] = useState([]);
+  
 
-  // const axiosPost = async()=>{
-  //   const res = await axios.get("http://localhost:3000/mainpage");
-  //   console.log(res)
-    // .then((res) =>{
+  const accessToken = localStorage.getItem("accessToken");
+  const fetchPosts = async () => {
+    const { data } = await axios.get("http://3.35.131.44/api/posts");
+    setPosts(data.data);
+    console.log(data);
+  };
 
-    //   console.log(res);
-    // // window.alert(res.data.answer);
-    // return res.data;
-    // })
-    // .catch((error) => alert(error.message));
+  useEffect(() => {
+    fetchPosts();
+  }, []);
+
+
+  // axios
+  // .get(
+  //   "http://3.35.131.44/api/posts",
+  //   {
+  //     headers: {
+  //       "Content-Type": "application/json",
+  //       Authorization: `Bearer ${accessToken}`,
+  //     },
+  //   },
+  //   { withCredentials: true }
+  // )
+  // .then((res) => {
+  //   const getfetchdata = res.data.data;
+  //   // console.log(getfetchdata);
+  //   setFetchData(getfetchdata);
     
-  // };
-
-axios.get("http://3.35.131.44/api/posts").then(res => {
-  //  const posts = res.data  
-console.log(res.data)
-
-});
+  // })
+  // .catch((err) => {
+  //   console.log(err);
+  // });
 
 
   const [uploadComment, setUploadComment] = useState(false);
@@ -43,7 +63,7 @@ console.log(res.data)
   };
   // const username = 작성자";
   const navigate = useNavigate();
-  const posts = useSelector((state)=> state.posts.postList);
+  // const posts = useSelector((state)=> state.posts.postList);
   const [toggle, setToggle]= useState(false);
 
   const onClickHandler = () => {
@@ -75,7 +95,7 @@ console.log(res.data)
                         <p>{post.postId}</p>
                         <h3
                         onClick={()=>{
-                          navigate(`/mypage/${post.username}`)
+                          navigate(`/mypage/${post.author}`)
                         }}
                         >{post.username}</h3>
                       </div>
@@ -85,9 +105,9 @@ console.log(res.data)
                         <p>{post.contents}</p>
                       </div>
                       <div>
-                      <p>{new Date(post.createdAt).toLocaleString()}</p>
+                      <p>{new Date(post.modifiedAt).toLocaleString()}</p>
                         {/* <button onClick={axiosPost}>좋아요</button><p>좋아요개수</p> */}
-                        <h3>다른사람아이디 : 댓글</h3>
+                        
                         <h3>다른사람아이디 : 댓글</h3>
                         <div>
                         <Modal visible={uploadComment} closeModal={closeCommentModal}>
@@ -110,8 +130,9 @@ console.log(res.data)
                           </div> */}
                          
                         </Modal>
+                        
                         </div>
-                       
+                       <CommentCom />
                         <button
                           onClick={() => {
                             setUploadComment(true);
@@ -120,7 +141,7 @@ console.log(res.data)
                           댓글 등록
                         </button>
                         
-                  ㅋ
+                  
                        </div>
                     </Box>
                   )

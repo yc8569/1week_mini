@@ -11,6 +11,8 @@ const AuthContext = createContext({
 });
 console.log(AuthContext)
 export const AuthContextProvider = (props) => {
+  const initialToken = localStorage.getItem("accessToken");
+  const [accessToken, setAccessToken] = useState(initialToken);
   
   const [token, setToken] = useState(null);
     
