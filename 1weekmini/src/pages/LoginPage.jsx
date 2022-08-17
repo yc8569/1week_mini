@@ -1,4 +1,4 @@
-import React, { useState, useContext } from "react";
+import React, { useState } from "react";
 import { useDispatch } from "react-redux";
 
 import { loginUser } from "../redux/modules/userAction";
@@ -47,11 +47,7 @@ function LoginPage(props) {
       const AccessToken = response.data.accessToken.split(" ")[0];
       const TokenExpiresIn = response.data.accessTokenExpiresIn;
       // 아래 setCookie를 통해 Cookie 안에 서버로부터 받은 토큰을 저장한다.
-      console.log(TokenExpiresIn);
 
-      // let date = new Date();
-      // date.setTime()
-     
       setCookie("token", AccessToken);
       localStorage.setItem("accessToken", AccessToken);
      

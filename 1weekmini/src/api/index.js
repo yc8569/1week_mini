@@ -80,10 +80,12 @@ api.interceptors.request.use(
 
 const apis = {
   //user
+
   addUser: (userData) => api.post('/user/register', userData),
   loginUser: (userData) => api.post("/user/login", userData),
   logoutUser: (userData) => api.post('/api/auth/users/logout', userData),
   getMypage: (userData) => api.get('/api/mypage', userData),
+  idCheck: (Username) => api.post("/user/idCheck", Username),
 
   //post
   getPosts: () => api.get('/api/posts'),
