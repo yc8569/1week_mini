@@ -1,17 +1,24 @@
-import React, { useState } from "react";
+import React, { useState, useContext } from "react";
 import { useDispatch } from "react-redux";
+
 import { loginUser } from "../redux/modules/userAction";
 import Cookies from "universal-cookie";
 import apis from "../api/index";
 import { setCookie } from "../shared/Cookie";
 import { useNavigate } from "react-router-dom";
 
+
 function LoginPage(props) {
   const dispatch = useDispatch();
   const navigate = useNavigate();
 
+
   const [Username, setUsername] = useState("");
   const [Password, setPassword] = useState("");
+
+  const goSignup = () => {
+    navigate('/register');
+  }
 
   const onUsernameHandler = (e) => {
     setUsername(e.currentTarget.value);
@@ -27,6 +34,7 @@ function LoginPage(props) {
       username: Username,
       password: Password,
     };
+
 
     e.preventDefault(); //1. !!아마 왼쪽꺼 필요없는 걸로 암.
     
@@ -64,13 +72,23 @@ function LoginPage(props) {
         style={{ display: "flex", flexDirection: "column" }}>
         <label>username</label>
         <input type="text" value={Username} onChange={onUsernameHandler} />
-        <label>Password</label>
+        <label>password</label>
         <input type="password" value={Password} onChange={onPasswordHanlder} />
         <br />
-        <button type="submit">Login</button>
+        <button type="submit">로그인</button>
+        <div 
+        onClick={goSignup}
+        style={{
+          textAlign: "right",
+          textDecoration : "underline",
+        }}
+        >회원가입</div>
+        <br />
+        
       </form>
     </div>
   );
 }
 
-export default LoginPage;
+export default LoginPage; 
+

@@ -91,6 +91,10 @@ function RegisterPage(props) {
   const dispatch = useDispatch();
   const navigate = useNavigate();
 
+  const goLogin = () => {
+    navigate('/loginpage');
+  }
+
   const onNameHandler = (e) => {
     setUsername(e.currentTarget.value);
   };
@@ -122,6 +126,8 @@ function RegisterPage(props) {
           )
           .then((res) => {
           console.log(res);
+          alert("회원가입 성공")
+          navigate("/loginpage");
           // props.history.push("/login");
           // props.navigate.push("/loginpage");
          
@@ -166,6 +172,13 @@ function RegisterPage(props) {
         />
         <br />
         <button type="submit">회원 가입</button>
+        <div 
+        onClick={goLogin}
+        style={{
+          textAlign: "right",
+          textDecoration : "underline",
+        }}
+        >로그인</div>
       </form>
     </div>
   );
