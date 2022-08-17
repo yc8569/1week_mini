@@ -77,10 +77,11 @@
 //새로운조인
 
 import React, { useState } from "react";
-import { useDispatch } from "react-redux";
-import { registerUser } from "../redux/modules/userAction";
+// import { useDispatch } from "react-redux";
+// import { registerUser } from "../redux/modules/userAction";
 import axios from "axios";
 import { useNavigate } from "react-router-dom";
+import apis from "../api/index";
 
 
 function RegisterPage(props) {
@@ -88,7 +89,7 @@ function RegisterPage(props) {
   const [Username, setUsername] = useState("");
   const [ConfirmPasword, setConfirmPasword] = useState("");
   
-  const dispatch = useDispatch();
+  // const dispatch = useDispatch();
   const navigate = useNavigate();
 
   const goLogin = () => {
@@ -107,43 +108,78 @@ function RegisterPage(props) {
     setConfirmPasword(e.currentTarget.value);
   };
 
-  const onSubmitHandler = (e) => {
+  const onSubmitHandler = async (e) => {
     e.preventDefault();
-    if (Password === ConfirmPasword) {
-      let body = {
-        username: Username,
-        password: Password,
-      };
-     
-     
-      axios
-          .post(
-          "http://3.35.131.44/user/register",
-          
-          {username: Username,
-            password: Password,}
-          
-          )
-          .then((res) => {
+      await apis.idCheck(
+        {
+          username : Username,
+        })
+        .then((res) => {
           console.log(res);
-          alert("회원가입 성공")
-          navigate("/loginpage");
-          // props.history.push("/login");
-          // props.navigate.push("/loginpage");
-         
-          })
-          .catch((err) => {
-          console.log(err);
-          alert("회원가입 실패");
-          });
-         
 
+          if (res.data === false) {
+            alert("사용 가능한 아이디입니다.")
+            apis.addUser(
+              {
+                username : Username,
+                password : Password,
+              })
+              .then((res) => {
+                console.log(res);
+                alert("회원가입 성공");
+                navigate("/loginpage");
+              })
+              .catch((err) => {
+                console.log(err);
+                alert("회원가입 실패");
+              });
 
+          } else if (res.data === true) {
+            alert("이미 사용중인 아이디입니다.")
+          }
+        });
+      
+      
+      // console.log(error);
+      // alert("회원가입 실패")
+    
 
-    } else {
-      alert("비밀번호가 일치하지 않습니다");
-    }
-  };
+    // async function id_check() {
+    //   await axios
+    //     .post("http://3.35.131.44/user/idCheck",{username: Username})
+    //     .then((res) => {
+    //       console.log(res)
+    //       if (res.data === false) {
+    //         alert("사용 가능한 아이디입니다.")
+    //       } else if (res.data === true) {
+    //         alert("이미 사용중인 아이디입니다.")
+    //       }
+    //     })
+    // }
+    
+    // id_check()
+
+    // axios
+    //     .post(
+    //     "http://3.35.131.44/user/register",
+        
+    //     {username: Username,
+    //       password: Password,}
+        
+    //     )
+    //     .then((res) => {
+    //     console.log(res);
+    //     alert("회원가입 성공");
+    //     navigate("/loginpage");
+    //     // props.history.push("/login");
+    //     // props.navigate.push("/loginpage");
+        
+    //     })
+    //     .catch((err) => {
+    //     console.log(err);
+    //     alert("회원가입 실패");
+    //     });
+      }
   
   return (
     <div

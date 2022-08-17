@@ -34,6 +34,7 @@ const apis = {
   //user
   addUser: (newUser) => api.post("/user/register", newUser),
   postLogin: (userdata) => api.post("/user/login", userdata),
+  idCheck: (Username) => api.post("/user/idCheck", Username),
   //post
   addPost: (contents) => api.post("/api/board/write", contents),
   editPost: (id, contents) => api.post(`/posts/${id}`, contents),
