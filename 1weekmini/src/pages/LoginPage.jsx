@@ -1,12 +1,14 @@
-import React, { useState } from "react";
+import React, { useState, useContext } from "react";
 import { useDispatch } from "react-redux";
-import { loginUser } from "../redux/modules/userAction";
+import { AuthContextProvider } from "../contextStore/auth-context";
 import { useNavigate } from "react-router-dom";
 import axios from "axios";
 
 function LoginPage(props) {
   const dispatch = useDispatch();
   const navigate = useNavigate();
+
+  const authContext = useContext(AuthContextProvider)
 
   const [Username, setUsername] = useState("");
   const [Password, setPassword] = useState("");
@@ -38,13 +40,19 @@ function LoginPage(props) {
             username: Username,
             password: Password,
           })
-
           .then((res) => {
-            console.log(res);
+            // console.log(res);
+            alert("로그인 성공");
+            // navigate("/");
+            return res.data;
+          })
+          .then((data) => {
+            console.log(data)
+            authContext.login(data);
           })
           .catch((err) => {
             console.log(err);
-            alert("로그인 실패")
+            alert("로그인 실패");
           });
           
 
@@ -75,7 +83,7 @@ function LoginPage(props) {
         style={{ display: "flex", flexDirection: "column" }}>
         <label>username</label>
         <input type="text" value={Username} onChange={onUsernameHandler} />
-        <label>Password</label>
+        <label>password</label>
         <input type="password" value={Password} onChange={onPasswordHanlder} />
         <br />
         <button type="submit">로그인</button>

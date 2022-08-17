@@ -126,6 +126,8 @@ function RegisterPage(props) {
           )
           .then((res) => {
           console.log(res);
+          alert("회원가입 성공")
+          navigate("/loginpage");
           // props.history.push("/login");
           // props.navigate.push("/loginpage");
          
