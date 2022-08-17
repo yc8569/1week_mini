@@ -152,7 +152,11 @@ const MainPage = (props) => {
                       </div>
                       <div className="Post-Main">
                         <div>내가올린 사진</div>
-                        <img src={post.imgUrl} alt={"안떠"} />
+                        <img src={post.imgUrl} alt={"안떠"} style={{
+                          height : '720px',
+                          width : '480px',
+                          objectFit : 'cover'
+                        }}/>
                         
                         <p>{post.contents}</p>
                       </div>
