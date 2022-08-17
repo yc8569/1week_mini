@@ -39,7 +39,7 @@ function LoginPage(props) {
     e.preventDefault(); //1. !!아마 왼쪽꺼 필요없는 걸로 암.
     
     try {
-      const response = await apis.postLogin({
+      const response = await apis.loginUser({
         username: Username,
         password: Password,
       });
