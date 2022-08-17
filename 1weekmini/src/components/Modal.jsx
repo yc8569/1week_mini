@@ -25,13 +25,13 @@ cursor:pointer;
 const ModalBody = styled.div`
 display:${(props)=> (props.visible? "black":"none")};
 position: fixed;
-top:30%;
+top: 50%;
 left: 50%;
 transform: translate(-50%, -50%);
 box-shadow: 0 0 6px 0 rgba(0,0,0,0.5);
 background-color: white;
 width: 600px;
-height: 280px;
+height: 500px;
 padding-left: 10px;
 z-index: 100;
 `;

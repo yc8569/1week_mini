@@ -17,7 +17,7 @@ const CommentCom =({id})=>{
             Authorization: `Bearer ${accessToken}`,}
         });
         setComments(data.data.data.comment);
-        console.log(data.data.data.comment);
+        // console.log(data.data.data.comment);
 
 
 
@@ -51,7 +51,7 @@ const CommentCom =({id})=>{
             <div>
                 {comments.map((comment)=>{
                     return(
-                        <div>
+                        <div key={comment.commentId}>
                         <div key={comment.commentId}>
                         <div> {comment.author}</div>  
                         {/* <h3> {comment.commentId}</h3>   */}

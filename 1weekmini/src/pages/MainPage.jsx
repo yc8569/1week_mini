@@ -8,24 +8,29 @@ import { useState } from "react";
 import axios from "axios";
 import { useEffect, useRef } from "react";
 import CommentCom from "../comment/CommentCom";
-import apis from "../api/index"
+// import apis from "../api/index"
 
 // import AuthContext from "../contextStore/auth-context";
 // import { withRouter } from 'react-router-dom';
 // import { useEffect } from "react";
-// import { getCookie } from "../shared/Cookie";
+import { getCookie } from "../shared/Cookie";
 
 const MainPage = (props) => {
   // const [fetchData, setFetchData] = useState([]);
   const [posts, setPosts] = useState([]);
   const [postId, setPostId] = useState();
   const commentRef = useRef()
-  
+  const accessToken = getCookie('token');
 
   // const accessToken = localStorage.get("accessToken");
   // console.log(accessToken)
   const fetchPosts = async () => {
-    const { data } = await axios.get("http://3.35.131.44/api/posts");
+    const { data } = await axios.get("http://3.35.131.44/api/posts",
+    {
+      headers:{
+      "Content-Type": "application/json",
+      Authorization: `Bearer ${accessToken}`,}
+  });
     setPosts(data.data);
     // console.log(data);
   };
@@ -74,22 +79,23 @@ const MainPage = (props) => {
   const onClickHandler = () => {
     setToggle((prev) => !prev);
   };
-  // console.log(posts.post.postId)
-  const onUpdateHandler = async (getCom) => {
-    const postid = await apis.getPosts()
-    console.log(postid.data)
-    const com = commentRef.current.value;
-    // const userIdCheck = () => {
-    apis.addComment(
-      postId,
-      com
-      )
-      console.log(com)
-    // }
 
-  
+  const onUpdateHandler = async () => {
+    const com = commentRef.current.value;
+    await axios.post(`/api/post/${postId}`,
+    { 
+      'commentContent' : com ,
+    },
+      {
+        headers:{
+        "Content-Type": "application/json",
+        Authorization: `Bearer ${accessToken}`,}
+    }
+      
     
-    // console.log(com)
+    )
+      .than((res) => console.log(res))
+      
   }
   
 
@@ -109,13 +115,34 @@ const MainPage = (props) => {
     return (
         <Layout>
           <StContainer>
+          <Modal visible={uploadComment} closeModal={closeCommentModal}>
+            <h2 style={{ textAlign: "center" }}>ID?뭐넣지?</h2>
+            {/* <Contents>
+              <h4>댓글들</h4>
+            </Contents> */}
+            {/* <CommentCom id={post.postId} /> */}
+            <CommentStyle>
+              <p>아이디</p>
+              <input
+                ref={commentRef}
+                name="contents"
+                type={"text"}
+                placeholder={"내용"}
+              ></input>
+              <button onClick={() => onUpdateHandler()}>댓글달기</button>
+            </CommentStyle>
+          </Modal>
             <StMain>
-              <div className="PostCard">
+              <div className="PostCard" style={{
+                  display: 'flex',
+                  flexDirection: 'column',
+                  alignItems: 'center',
+                  gap: '30px'
+              }}>
                 {posts.map((post)=>{
-                  console.log(post.postId)
                   return(
-                    <Box >
-                      <div className="Post-Top" >
+                    <Box key={post.postId}>
+                      <div className="Post-Top" style={{}} >
                         <p>{post.postId}</p>
                         <h3
                         onClick={()=>{
@@ -135,22 +162,7 @@ const MainPage = (props) => {
                         
                         
                         <div>
-                        <Modal visible={uploadComment} closeModal={closeCommentModal}>
-                          <h2 style={{ textAlign: "center" }}>ID?뭐넣지?</h2>
-                          <Contents>
-                            <h4>댓글들</h4>
-                          </Contents>
-                          <CommentStyle>
-                            <text>아이디</text>
-                            <input
-                              ref={commentRef}
-                              name="contents"
-                              type={"text"}
-                              placeholder={"내용"}
-                            ></input>
-                            <button onClick={() => onUpdateHandler()}>댓글달기</button>
-                          </CommentStyle>
-                        </Modal>
+                          
                         
                         </div>
                        <CommentCom id={post.postId}/>
@@ -181,24 +193,35 @@ const MainPage = (props) => {
 
 export default MainPage;
 
+
 const StContainer = styled.div`
-  position: relative;
+  /* position: relative; */
   width: 100%;
   height: 100%;
 `;
 
 const StMain = styled.div`
   margin-top: 24px;
-  flex({
+  /* display : flex;
+  flex-direction: column;
+  align-items: start; */
+  /* flex{
     direction: "column",
     align: "start",
-  })
+  }; */
   gap: 24px;
+  margin : auto;
 `;
 
 const Box = styled.div`
   border: 1px solid rebeccapurple;
   border-radius: 10px;
+  padding: 20px;
+  width: 800px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  
 `;
 
 const Backdrop = styled.div`
