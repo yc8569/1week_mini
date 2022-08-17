@@ -1,9 +1,32 @@
 import React from "react";
 import styled from "styled-components";
 import { useNavigate } from "react-router-dom";
+import { getCookie } from "../shared/Cookie";
+import { deleteCookie } from "../shared/Cookie";
+import { Link } from "react-router-dom";
+
 
 const Header = () => {
- const navigate =useNavigate();
+ 
+  const cookie = getCookie("token");
+  const navigate = useNavigate();
+
+  const [is_cookie, setCookie] = React.useState(false);
+
+  React.useEffect(() => {
+    if (cookie !== undefined) {
+      return setCookie(true);
+    }
+  }, []);
+
+  const onLogout = (e) => {
+    deleteCookie("token");
+    setCookie(false);
+  };
+
+
+
+
   return (
     <StContainer>
         <StTitle>
@@ -18,6 +41,11 @@ const Header = () => {
         <button onClick={()=>{
           navigate('/postpage')
         }}>게시물작성</button>
+         <button onClick={()=>{
+          onLogout();
+          navigate('/loginpage');
+          window.location.reload(true);
+        }}>로그아웃</button>
     </StContainer>
   );
 };
@@ -35,3 +63,6 @@ const StContainer = styled.header`
 const StTitle = styled.div`
   font-size: 24px;
 `;
+
+
+
