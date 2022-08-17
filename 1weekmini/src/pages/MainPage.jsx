@@ -7,8 +7,9 @@ import Modal from "../components/Modal";
 import { useState } from "react";
 import axios from "axios";
 import { useEffect } from "react";
-
+import CommentCom from "../comment/CommentCom";
 import AuthContext from "../contextStore/auth-context";
+import { withRouter } from 'react-router-dom';
 // import { useEffect } from "react";
 // import { getCookie } from "../shared/Cookie";
 
@@ -106,7 +107,7 @@ const MainPage = (props) => {
                       <div>
                       <p>{new Date(post.modifiedAt).toLocaleString()}</p>
                         {/* <button onClick={axiosPost}>좋아요</button><p>좋아요개수</p> */}
-                        <h3>다른사람아이디 : 댓글</h3>
+                        
                         <h3>다른사람아이디 : 댓글</h3>
                         <div>
                         <Modal visible={uploadComment} closeModal={closeCommentModal}>
@@ -129,8 +130,9 @@ const MainPage = (props) => {
                           </div> */}
                          
                         </Modal>
+                        
                         </div>
-                       
+                       <CommentCom />
                         <button
                           onClick={() => {
                             setUploadComment(true);
@@ -139,7 +141,7 @@ const MainPage = (props) => {
                           댓글 등록
                         </button>
                         
-                  ㅋ
+                  
                        </div>
                     </Box>
                   )
