@@ -45,10 +45,15 @@ function LoginPage(props) {
       });
       console.log(response);
       const AccessToken = response.data.accessToken.split(" ")[0];
+      const TokenExpiresIn = response.data.accessTokenExpiresIn;
       // 아래 setCookie를 통해 Cookie 안에 서버로부터 받은 토큰을 저장한다.
-      // console.log(AccessToken);
+      console.log(TokenExpiresIn);
+
+      // let date = new Date();
+      // date.setTime()
      
       setCookie("token", AccessToken);
+      localStorage.setItem("accessToken", AccessToken);
      
       // 위의 setCookie("token", AccessToken) 안의 매겨변수는 "토큰 이름", 토큰값 이다.
       alert("로그인 성공");

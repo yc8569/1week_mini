@@ -4,7 +4,7 @@ import { useNavigate } from "react-router-dom";
 import { getCookie } from "../shared/Cookie";
 import { deleteCookie } from "../shared/Cookie";
 import { Link } from "react-router-dom";
-
+import apis from "../api/index";
 
 const Header = () => {
  
@@ -20,8 +20,12 @@ const Header = () => {
   }, []);
 
   const onLogout = (e) => {
+    localStorage.clear();
     deleteCookie("token");
     setCookie(false);
+    
+    
+    
   };
 
 

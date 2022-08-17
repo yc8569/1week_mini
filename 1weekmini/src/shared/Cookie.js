@@ -2,9 +2,9 @@ import Cookies from "universal-cookie";
 
 const cookies = new Cookies();
 
-export const setCookie = (name, value, exp = 5) => {
+export const setCookie = (name, value, exp = 1 ) => {
   let date = new Date();
-  date.setTime(date.getTime() + exp * 24 * 60 * 60 * 1000);
+  date.setTime(date.getTime() + exp  * 60 * 30 * 1000);
   document.cookie = `${name}=${value}; expires=${date.toUTCString()}`;
   // return cookies.set(name, value, { ...option });
 };
