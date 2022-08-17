@@ -101,6 +101,7 @@ const MainPage = (props) => {
                       </div>
                       <div className="Post-Main">
                         <div>내가올린 사진</div>
+                        <img src={post.imgUrl} alt={"안떠"} />
                         
                         <p>{post.contents}</p>
                       </div>
@@ -108,7 +109,7 @@ const MainPage = (props) => {
                       <p>{new Date(post.modifiedAt).toLocaleString()}</p>
                         {/* <button onClick={axiosPost}>좋아요</button><p>좋아요개수</p> */}
                         
-                        <h3>다른사람아이디 : 댓글</h3>
+                        
                         <div>
                         <Modal visible={uploadComment} closeModal={closeCommentModal}>
                           <h2 style={{ textAlign: "center" }}>ID?</h2>
@@ -128,7 +129,7 @@ const MainPage = (props) => {
                         </Modal>
                         
                         </div>
-                       <CommentCom />
+                       <CommentCom id={post.postId}/>
                         <button
                           onClick={() => {
                             setUploadComment(true);
