@@ -9,7 +9,7 @@ const AuthContext = createContext({
   logout: () => {},
   
 });
-console.log(AuthContext)
+// console.log(AuthContext)
 export const AuthContextProvider = (props) => {
   const initialToken = localStorage.getItem("accessToken");
   const [accessToken, setAccessToken] = useState(initialToken);
@@ -21,7 +21,7 @@ export const AuthContextProvider = (props) => {
   const loginHandler = (token) => {
     setToken(token);
   };
-  console.log(token)
+  // console.log(token)
   const logoutHandler = () => {
     setToken(null);
   };
