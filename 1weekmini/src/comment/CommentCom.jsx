@@ -17,7 +17,7 @@ const CommentCom =({id})=>{
             Authorization: `Bearer ${accessToken}`,}
         });
         setComments(data.data.data.comment);
-        // console.log(data.data.data.comment);
+        console.log(data.data.data.comment);
 
 
 
