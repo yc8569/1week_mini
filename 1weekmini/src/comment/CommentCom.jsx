@@ -41,9 +41,9 @@ const CommentCom =({id})=>{
             "Content-Type": "application/json",
             Authorization: `Bearer ${accessToken}`,}
             })
-            .catch
+            
             .then(
-                window.location.replace('/')
+                window.location.replace('/main')
                 )
             console.log(del)
     };

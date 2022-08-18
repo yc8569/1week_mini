@@ -77,7 +77,7 @@ const MainPage = (props) => {
           "Content-Type": "application/json",
           Authorization: `Bearer ${accessToken}`,}
       })
-      .then(window.location.replace('/'))
+      .then(window.location.replace('/main'))
       console.log(postComment)
     }
   

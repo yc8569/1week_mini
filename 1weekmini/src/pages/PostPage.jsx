@@ -94,7 +94,7 @@ const handleSubmit =(event)=>{
 
   setPost(initialState);
   
-  navigate('/');
+  navigate('/main');
   number = number+1;
 }
 

@@ -51,7 +51,7 @@ function LoginPage(props) {
      
       // 위의 setCookie("token", AccessToken) 안의 매겨변수는 "토큰 이름", 토큰값 이다.
       alert("로그인 성공");
-      navigate("/");
+      navigate("/main");
     } catch (error) {
       alert("로그인 다시시도");
     }
