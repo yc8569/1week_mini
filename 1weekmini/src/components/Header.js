@@ -39,9 +39,6 @@ const Header = () => {
         <button onClick={()=>{
           navigate('/main')
         }}>HOME</button>
-        <button onClick={() =>{
-          navigate('/register')
-        }}>회원가입</button>
         <button onClick={()=>{
           navigate('/postpage')
         }}>게시물작성</button>
