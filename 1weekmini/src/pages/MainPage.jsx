@@ -21,6 +21,7 @@ const MainPage = (props) => {
   const [postId, setPostId] = useState();
   const commentRef = useRef()
   const accessToken = getCookie('token');
+  
 
   // const accessToken = localStorage.get("accessToken");
   // console.log(accessToken)
@@ -82,21 +83,17 @@ const MainPage = (props) => {
 
   const onUpdateHandler = async () => {
     const com = commentRef.current.value;
-    await axios.post(`/api/post/${postId}`,
-    { 
-      'commentContent' : com ,
-    },
-      {
+    const postComment  = await axios.post(`/api/post/${postId}`,
+      { 
+        'commentContent' : com ,
+      },{
         headers:{
-        "Content-Type": "application/json",
-        Authorization: `Bearer ${accessToken}`,}
+          "Content-Type": "application/json",
+          Authorization: `Bearer ${accessToken}`,}
+      })
+      .then(window.location.replace('/'))
+      console.log(postComment)
     }
-      
-    
-    )
-      .than((res) => console.log(res))
-      
-  }
   
 
   // const togglechange = () => {
@@ -129,7 +126,7 @@ const MainPage = (props) => {
                 type={"text"}
                 placeholder={"내용"}
               ></input>
-              <button onClick={() => onUpdateHandler()}>댓글달기</button>
+              <button onClick={onUpdateHandler}>댓글달기</button>
             </CommentStyle>
           </Modal>
             <StMain>
@@ -245,5 +242,5 @@ const Contents = styled.div`
 `
 
 const CommentStyle = styled.div`
-  position: bottom;
+  position: center;
 `

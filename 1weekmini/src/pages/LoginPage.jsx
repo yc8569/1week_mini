@@ -43,7 +43,7 @@ function LoginPage(props) {
         username: Username,
         password: Password,
       });
-      console.log(response);
+      // console.log(response);
       const AccessToken = response.data.accessToken.split(" ")[0];
       const TokenExpiresIn = response.data.accessTokenExpiresIn;
       // 아래 setCookie를 통해 Cookie 안에 서버로부터 받은 토큰을 저장한다.
