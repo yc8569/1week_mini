@@ -12,7 +12,7 @@ function RegisterPage(props) {
   const navigate = useNavigate();
 
   const goLogin = () => {
-    navigate('/loginpage');
+    navigate('/');
   }
 
   const onNameHandler = (e) => {
