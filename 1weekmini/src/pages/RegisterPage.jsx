@@ -12,7 +12,7 @@ function RegisterPage(props) {
   const navigate = useNavigate();
 
   const goLogin = () => {
-    navigate('/loginpage');
+    navigate('/');
   }
 
   const onNameHandler = (e) => {
@@ -46,7 +46,7 @@ function RegisterPage(props) {
               .then((res) => {
                 console.log(res);
                 alert("회원가입 성공");
-                navigate("/loginpage");
+                navigate("/");
               })
               .catch((err) => {
                 console.log(err);
