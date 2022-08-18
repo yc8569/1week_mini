@@ -9,7 +9,6 @@ import axios from "axios";
 import { useEffect, useRef } from "react";
 import CommentCom from "../comment/CommentCom";
 // import apis from "../api/index"
-
 // import AuthContext from "../contextStore/auth-context";
 // import { withRouter } from 'react-router-dom';
 // import { useEffect } from "react";
@@ -21,7 +20,7 @@ const MainPage = (props) => {
   const [postId, setPostId] = useState();
   const commentRef = useRef()
   const accessToken = getCookie('token');
-  
+  const navigate = useNavigate();
 
   // const accessToken = localStorage.get("accessToken");
   // console.log(accessToken)
@@ -67,19 +66,6 @@ const MainPage = (props) => {
   const closeCommentModal = () => {
     setUploadComment(false);
   };
-  //  일정수정 모달
-  const [Comment, setComment] = useState(false);
-  const closeComment = () => {
-    setComment(false);
-  };
-  // const username = 작성자";
-  const navigate = useNavigate();
-  // const posts = useSelector((state)=> state.posts.postList);
-  const [toggle, setToggle]= useState(false);
-
-  const onClickHandler = () => {
-    setToggle((prev) => !prev);
-  };
 
   const onUpdateHandler = async () => {
     const com = commentRef.current.value;
@@ -113,7 +99,7 @@ const MainPage = (props) => {
         <Layout>
           <StContainer>
           <Modal visible={uploadComment} closeModal={closeCommentModal}>
-            <h2 style={{ textAlign: "center" }}>ID?뭐넣지?</h2>
+            {/* <h2 style={{ textAlign: "center" }}>ID?뭐넣지?</h2> */}
             {/* <Contents>
               <h4>댓글들</h4>
             </Contents> */}
@@ -137,7 +123,7 @@ const MainPage = (props) => {
                   gap: '30px'
               }}>
                 {posts.map((post)=>{
-                  console.log(post);
+                  // console.log(post);
                   return(
                     <Box key={post.postId}>
                       <div className="Post-Top" style={{}} >

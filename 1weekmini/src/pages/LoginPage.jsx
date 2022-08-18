@@ -1,7 +1,5 @@
 import React, { useState } from "react";
 import { useDispatch } from "react-redux";
-
-import { loginUser } from "../redux/modules/userAction";
 import Cookies from "universal-cookie";
 import apis from "../api/index";
 import { setCookie } from "../shared/Cookie";

@@ -7,7 +7,8 @@ import { useNavigate, useParams } from "react-router-dom";
 import { useRef } from 'react';
 import { getCookie, setCookie } from '../shared/Cookie';
 import { Button, Card, Container, Form, InputGroup, Image} from 'react-bootstrap';
-import apis from "../api/axios";
+
+
 let number = 3
 const PostPage = () => {
   const navigate = useNavigate();
