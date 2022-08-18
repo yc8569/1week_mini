@@ -24,8 +24,6 @@ const Header = () => {
     deleteCookie("token");
     setCookie(false);
     
-    
-    
   };
 
 
