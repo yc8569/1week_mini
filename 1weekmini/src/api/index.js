@@ -32,7 +32,7 @@ const apis = {
   //post
   getPosts: () => api.get('/api/posts'),
   getGenrePosts: () => api.get('/api/posts?genre=:genre'),
-  addPost: (contents) => api.post('/api/posts', contents),
+  addPost: (contents) => api.post('/api/post', contents),
   editPost: (postId, contents) => api.post(`/posts/${postId}`, contents),
   delPost: (postId) => api.delete(`/api/posts/${postId}`),
   getDetail: (postId) => api.get(`/api/posts/${postId}`),

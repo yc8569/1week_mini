@@ -53,9 +53,9 @@ const CommentCom =({id})=>{
                     return(
                         <div key={comment.commentId}>
                         <div key={comment.commentId}>
-                        <div> {comment.author}</div>  
+                        <div> 댓글단사람:{comment.author}</div>  
                         {/* <h3> {comment.commentId}</h3>   */}
-                        <h2> {comment.commentContent}</h2> 
+                        <h2> 다른사람댓글:{comment.commentContent}</h2> 
                         
                         <p>{new Date(comment.modifiedAt).toLocaleString()}수정</p>
                         <p>{new Date(comment.createdAt).toLocaleString()}생성</p>

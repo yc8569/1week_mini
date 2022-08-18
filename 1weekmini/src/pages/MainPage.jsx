@@ -140,24 +140,25 @@ const MainPage = (props) => {
                   gap: '30px'
               }}>
                 {posts.map((post)=>{
+                  console.log(post);
                   return(
                     <Box key={post.postId}>
                       <div className="Post-Top" style={{}} >
-                        <p>{post.postId}</p>
+                        <p>{post.postId}메인아이디</p>
                         <h3
                         onClick={()=>{
                           navigate(`/mypage/${post.author}`)
                         }}
-                        >{post.username}</h3>
+                        >{post.author}메인이름</h3>
                       </div>
                       <div className="Post-Main">
                         <div>내가올린 사진</div>
-                        <img src={post.imgUrl} alt={"안떠"} />
+                        {/* <img src={post.imgUrl} alt={"안떠"} /> */}
                         
-                        <p>{post.contents}</p>
+                        <p>{post.contents}메인내용</p>
                       </div>
                       <div>
-                      <p>{new Date(post.modifiedAt).toLocaleString()}</p>
+                      <p>메인시간{new Date(post.modifiedAt).toLocaleString()}</p>
                         {/* <button onClick={axiosPost}>좋아요</button><p>좋아요개수</p> */}
                         
                         

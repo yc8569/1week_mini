@@ -6,7 +6,8 @@ import { useDispatch } from "react-redux";
 import { useNavigate, useParams } from "react-router-dom";
 import { useRef } from 'react';
 import { getCookie, setCookie } from '../shared/Cookie';
-
+import { Button, Card, Container, Form, InputGroup, Image} from 'react-bootstrap';
+import apis from "../api/axios";
 let number = 3
 const PostPage = () => {
   const navigate = useNavigate();
@@ -30,9 +31,15 @@ const PostPage = () => {
 
   // 파일 저장 - 로컬에서만 볼 수 있다
   const saveFileImage = (e) => {
-    setFileImage(URL.createObjectURL(e.target.files[0]));
+    setFileImage(URL.createObjectURL(e.target.files[0]));  //미이보기기능
     setImage(e.target.files[0])
+  // console.log(e.target.files[0])
   };
+    // 이미지 파일 저장
+    const onChangeImage = (e) =>{
+      setImage(e.target.files[0])
+      // console.log(fileImgUp);
+    }
 
   const initialState ={
     createdAt: null,
@@ -47,31 +54,31 @@ const PostPage = () => {
   const [post, setPost] = useState(initialState);
   const dispatch = useDispatch();
 
-  const onChangeHandler = (event) => {     //어떤이름으로 올릴꺼니
-    
-    // const uploded_file = uploadBytes(ref(storage,`image/${event.target.file[0].name}`),
-    // event.target.file[0]  //어떤거를 올릴꺼니
-    // );
-
-    setPost({
-      ...post,
-      [event.target.name]: event.target.value,
-    })
-    
-}
 
 
 
 const handleSubmit =(event)=>{
-  event.preventDefault();
-  const createdAt = new Date().getTime();
-  console.log(createdAt);
- 
+  // event.preventDefault();
+  // const createdAt = new Date().getTime();
+  // console.log(createdAt);
+
+  formData.append('author', usernameRef.current.value);
+  formData.append('content', contentsRef.current.value);
+  formData.append('imgUrl',fileImgUp);
+
+  addPost(formData)
+
+
+  
+  // console.log(usernameRef.current.value);
+  // console.log(imageRef.current.value);
+  // console.log(fileImage);   //백으로보낼내용
+  // console.log(contentsRef.current.value);
 
   
   // if (post.title.trim() === '' || post.contents.trim() === '') 
   // return(alert("빈칸입니다"));
-  dispatch(addPost({...post, postId: number, createdAt,}));
+  // dispatch(addPost({...post, postId: number, createdAt,}));
 
 // console.log(post);
 // axios
@@ -103,9 +110,10 @@ const handleSubmit =(event)=>{
           </div>
           <input
             type="text"
-            onChange={onChangeHandler}
+            required
+            ref={usernameRef}
             placeholder="작성자의 이름을 입력해주세요. (5자 이내)"
-            value={post.username }
+            defaultValue={post.username }
             name="username"
             maxLength={5}
           />
@@ -114,27 +122,43 @@ const handleSubmit =(event)=>{
           </div>
           <input
             type="text"
-            onChange={onChangeHandler}
+            required
+            ref={contentsRef}
             placeholder="제목을 입력해주세요. (50자 이내)"
-            value={post.contents}
+            defaultValue={post.contents}
             name="contents"
             maxLength={50}
           />
           <div mg="10px 0">
             <label size="24">사진</label>
           </div>
-          <image    
+          
+              <Card>
+                {!fileImage && <p style={{paddingTop:"15px"}}>이미지 미리보기💾</p>}
+                <Image
                 //  alt="이미지 미리보기💾"
                  accept="image/*"
                  src={fileImage}
                  rounded={true}
                />
-          <input type='file' 
+              </Card>
+              
+
+                <Form.Control
+                  type="file"
+                  required
+                  id="imageUrl"
+                  name="imageFile"
+                  onChange={saveFileImage}
+                  ref={imageRef}
+                />
+
+          {/* <input type='file' 
                  multiple="multiple" 
                  name='imgurl' 
                  accept="image/jpg, image/png, image/jpeg"
       onChange={onChangeHandler} 
-      />
+      /> */}
       
  
         </StMain>
@@ -173,3 +197,6 @@ const StContainer = styled.div`
 const StMain = styled.div`
   width: 100%;
 `;
+
+
+
