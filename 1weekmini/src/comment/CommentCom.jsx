@@ -66,6 +66,7 @@ const CommentCom =({id})=>{
                 
                 {comments.map((comment)=>{
                     return(
+
                         <Box key={comment.commentId}>
                             <div key={comment.commentId}>
                             <div key={comment.commentId}>
@@ -83,6 +84,7 @@ const CommentCom =({id})=>{
                             onClick={() => {
                                 setUploadComment(true);
                             }}>수정</button>
+
 
                             </div>
                             </div>
