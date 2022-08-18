@@ -37,17 +37,17 @@ const Header = () => {
             SPARTAGRAM
         </StTitle>
         <button onClick={()=>{
-          navigate('/')
+          navigate('/main')
         }}>HOME</button>
         <button onClick={() =>{
-          navigate('/loginpage')
-        }}>회원가입 : 마이페이지</button>
+          navigate('/register')
+        }}>회원가입</button>
         <button onClick={()=>{
           navigate('/postpage')
         }}>게시물작성</button>
          <button onClick={()=>{
           onLogout();
-          navigate('/loginpage');
+          navigate('/');
           window.location.reload(true);
         }}>로그아웃</button>
     </StContainer>
